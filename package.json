@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "tsx server.ts",
-    "build": "npm install --legacy-peer-deps && npx vite build && npx esbuild server.ts --platform=node --packages=external --bundle --outfile=dist/server.js",
-    "start": "node dist/server.js",
+    "build": "npm install --legacy-peer-deps && npx vite build && npx esbuild server.ts --platform=node --packages=external --bundle --format=esm --outfile=dist/server.mjs",
+    "start": "node dist/server.mjs",
     "preview": "npx vite preview",
-    "clean": "rm -rf dist server.js",
+    "clean": "rm -rf dist server.js server.mjs",
     "lint": "tsc --noEmit"
   },
   "dependencies": {
