@@ -265,8 +265,25 @@ async function startServer() {
     });
     app.use(vite.middlewares);
   } else {
-    const distPath = path.resolve(process.cwd(), 'dist');
+    // Try multiple possible dist paths
+    const possiblePaths = [
+      path.resolve(process.cwd(), 'dist'),
+      path.resolve(__dirname, 'dist'),
+      path.resolve(process.cwd(), 'src', 'dist'),
+      '/opt/render/project/src/dist'
+    ];
+    
+    let distPath = possiblePaths[0];
+    for (const possiblePath of possiblePaths) {
+      if (fs.existsSync(possiblePath)) {
+        distPath = possiblePath;
+        break;
+      }
+    }
+    
     console.log('Serving static files from:', distPath);
+    console.log('Current working directory:', process.cwd());
+    console.log('__dirname:', __dirname);
     console.log('Dist path exists:', fs.existsSync(distPath));
     
     // Serve static files first
