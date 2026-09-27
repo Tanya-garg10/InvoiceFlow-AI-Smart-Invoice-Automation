@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "tsx server.ts",
-    "build": "vite build && esbuild server.ts --platform=node --packages=external --bundle --outfile=dist/server.js",
+    "build": "npm install --legacy-peer-deps && npx vite build && npx esbuild server.ts --platform=node --packages=external --bundle --outfile=dist/server.js",
     "start": "node dist/server.js",
-    "preview": "vite preview",
+    "preview": "npx vite preview",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit"
   },
