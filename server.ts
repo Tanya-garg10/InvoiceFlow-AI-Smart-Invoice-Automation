@@ -265,10 +265,18 @@ async function startServer() {
     });
     app.use(vite.middlewares);
   } else {
-    const distPath = path.resolve(__dirname, 'dist');
+    const distPath = path.resolve(process.cwd(), 'dist');
+    console.log('Serving static files from:', distPath);
+    console.log('Dist path exists:', fs.existsSync(distPath));
+    
+    // Serve static files first
     app.use(express.static(distPath));
+    
+    // Then handle SPA routing - return index.html for all non-API routes
     app.get('*', (req, res) => {
-      res.sendFile(path.join(distPath, 'index.html'));
+      const indexPath = path.join(distPath, 'index.html');
+      console.log('Serving index.html from:', indexPath);
+      res.sendFile(indexPath);
     });
   }
 
