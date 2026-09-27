@@ -1,0 +1,6 @@
+{
+  "name": "InvoiceFlow AI — Smart Invoice Automation",
+  "description": "Turn customer natural-language requests into accurate, professional, review-ready invoices with AI extraction, authoritative CSV price lookup, and PDF generation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
